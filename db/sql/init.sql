@@ -1,0 +1,11 @@
+CREATE DATABASE lair;
+
+CREATE TABLE lair.Users (
+	id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    hash VARCHAR(255) NOT NULL,
+    created DATETIME NOT NULL,
+    modified DATETIME NOT NULL
+);

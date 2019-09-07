@@ -1,9 +1,14 @@
 package models
 
+import (
+	"time"
+)
+
 // Base represnts fields common to all models
 type Base struct {
-	ID   uint64 `json:"id" db:"id"`
-	Name string `json:"name" db:"name"`
+	ID       uint64    `json:"id" db:"id,omitempty"`
+	Created  time.Time `json:"created" db:"created"`
+	Modified time.Time `json:"modified" db:"modified"`
 }
 
 // AbilitySet represents a set of ability scores
