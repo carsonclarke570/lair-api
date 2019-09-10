@@ -8,3 +8,22 @@ type User struct {
 	Email     string `json:"email" db:"email"`
 	Hash      string `json:"-" db:"hash"`
 }
+
+// GetBase from model.Model
+func (u *User) GetBase() *Base {
+	return &u.Base
+}
+
+func (u *User) SetID(id uint) {
+	u.ID = id
+}
+
+// TableName from model.Model
+func (*User) TableName() string {
+	return "Users"
+}
+
+// FilterParams from model.Model
+func (u *User) FilterParams() map[string]string {
+	return map[string]string{}
+}

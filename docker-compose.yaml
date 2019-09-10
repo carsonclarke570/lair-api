@@ -10,10 +10,11 @@ services:
     expose:
       - '3306'
     volumes:
-      - ./db/sql:/docker-entrypoint-initdb.d
+      - ./sql/up.sql:/docker-entrypoint-initdb.d/1.up.sql
+      - ./sql/populate.sql:/docker-entrypoint-initdb.d/2.populate.sql
   api:
     build: .
     depends_on:
       - db
     ports:
-      - '80:80'
+      - '8000:8000'
