@@ -16,7 +16,7 @@ const (
 var (
 	user = "root"
 	pass = "lairpw"
-	host = "db"
+	host = "localhost"
 )
 
 // InitDB initializes the database connection
