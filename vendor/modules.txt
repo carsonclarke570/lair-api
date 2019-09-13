@@ -1,23 +1,37 @@
+# github.com/davecgh/go-spew v1.1.1
+github.com/davecgh/go-spew/spew
 # github.com/go-sql-driver/mysql v1.4.1
 github.com/go-sql-driver/mysql
 # github.com/gorilla/mux v1.7.3
 github.com/gorilla/mux
+# github.com/h2non/parth v0.0.0-20190131123155-b4df798d6542
+github.com/h2non/parth
 # github.com/konsorten/go-windows-terminal-sequences v1.0.1
 github.com/konsorten/go-windows-terminal-sequences
+# github.com/pmezard/go-difflib v1.0.0
+github.com/pmezard/go-difflib/difflib
 # github.com/sirupsen/logrus v1.4.2
 github.com/sirupsen/logrus
+# github.com/stretchr/testify v1.4.0
+github.com/stretchr/testify/suite
+github.com/stretchr/testify/assert
+github.com/stretchr/testify/require
 # golang.org/x/sys v0.0.0-20190606165138-5da285871e9c
 golang.org/x/sys/unix
 # google.golang.org/appengine v1.6.2
 google.golang.org/appengine/cloudsql
+# gopkg.in/h2non/gock.v1 v1.0.15
+gopkg.in/h2non/gock.v1
+# gopkg.in/yaml.v2 v2.2.2
+gopkg.in/yaml.v2
 # upper.io/db.v3 v3.6.3+incompatible
+upper.io/db.v3/lib/sqlbuilder
 upper.io/db.v3/mysql
 upper.io/db.v3
-upper.io/db.v3/internal/cache
-upper.io/db.v3/internal/sqladapter
+upper.io/db.v3/internal/immutable
 upper.io/db.v3/internal/sqladapter/compat
 upper.io/db.v3/internal/sqladapter/exql
-upper.io/db.v3/lib/sqlbuilder
-upper.io/db.v3/internal/immutable
-upper.io/db.v3/internal/cache/hashstructure
 upper.io/db.v3/lib/reflectx
+upper.io/db.v3/internal/cache
+upper.io/db.v3/internal/sqladapter
+upper.io/db.v3/internal/cache/hashstructure

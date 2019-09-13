@@ -16,9 +16,9 @@ func main() {
 	}
 	defer sess.Close()
 
-	router := router.CreateRouter()
+	router := router.CreateRouter(sess)
 	log.Info("Starting HTTP server..")
 
-	err = http.ListenAndServe(":80", router)
+	err = http.ListenAndServe(":8001", router)
 	log.WithError(err).Error("error serving requests")
 }

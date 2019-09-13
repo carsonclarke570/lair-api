@@ -6,27 +6,17 @@ import (
 
 // Base represnts fields common to all models
 type Base struct {
-	ID       uint64    `json:"id" db:"id,omitempty"`
+	ID       uint      `json:"id" db:"id,omitempty"`
 	Created  time.Time `json:"created" db:"created"`
 	Modified time.Time `json:"modified" db:"modified"`
 }
 
-// AbilitySet represents a set of ability scores
-type AbilitySet struct {
-	Strength     uint `json:"str" db:"str"`
-	Dexterity    uint `json:"dex" db:"dex"`
-	Constitution uint `json:"con" db:"con"`
-	Intelligence uint `json:"int" db:"int"`
-	Wisdom       uint `json:"wis" db:"wis"`
-	Charisma     uint `json:"cha" db:"cha"`
-}
-
-// SavingSet represents a set of saving throws
-type SavingSet struct {
-	Strength     uint `json:"str" db:"str_save"`
-	Dexterity    uint `json:"dex" db:"dex_save"`
-	Constitution uint `json:"con" db:"con_save"`
-	Intelligence uint `json:"int" db:"int_save"`
-	Wisdom       uint `json:"wis" db:"wis_save"`
-	Charisma     uint `json:"cha" db:"cha_save"`
+// AbilityScores represents a set of ability scores
+type AbilityScores struct {
+	STR int `json:"str" db:"str"`
+	DEX int `json:"dex" db:"dex"`
+	CON int `json:"con" db:"con"`
+	INT int `json:"int" db:"int"`
+	WIS int `json:"wis" db:"wis"`
+	CHA int `json:"cha" db:"cha"`
 }
