@@ -11,12 +11,14 @@ const (
 	envUser = "DB_USER"
 	envPass = "DB_PASS"
 	envHost = "DB_HOST"
+	envData = "DB_DATA"
 )
 
 var (
 	user = "root"
 	pass = "lairpw"
 	host = "localhost"
+	db   = "lair"
 )
 
 // InitDB initializes the database connection
@@ -30,12 +32,15 @@ func InitDB() (sqlbuilder.Database, error) {
 	if h := os.Getenv(envHost); h != "" {
 		host = h
 	}
+	if d := os.Getenv(envData); d != "" {
+		db = d
+	}
 
 	settings := mysql.ConnectionURL{
 		User:     user,
 		Password: pass,
 		Host:     host,
-		Database: "lair",
+		Database: db,
 	}
 
 	sess, err := mysql.Open(settings)
