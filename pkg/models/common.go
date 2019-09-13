@@ -16,7 +16,7 @@ type AbilityScores struct {
 	STR int `json:"str" db:"str"`
 	DEX int `json:"dex" db:"dex"`
 	CON int `json:"con" db:"con"`
-	INT int `json:"int" db:"int"`
+	INT int `json:"itl" db:"itl"`
 	WIS int `json:"wis" db:"wis"`
 	CHA int `json:"cha" db:"cha"`
 }

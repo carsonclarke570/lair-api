@@ -9,3 +9,26 @@ CREATE TABLE lair.Users (
     created DATETIME NOT NULL,
     modified DATETIME NOT NULL
 );
+
+CREATE TABLE character_sheets (
+    id BIGINT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    race VARCHAR(255) NOT NULL,
+    level INT NOT NULL,
+    size VARCHAR(255),
+    alignment VARCHAR(255),
+    ac INT NOT NULL,
+    armor VARCHAR(255),
+    hit_points INT NOT NULL,
+    hit_die VARCHAR(255) NOT NULL,
+    speed VARCHAR(255) NOT NULL,
+    initiative INT NOT NULL,
+    str VARCHAR(255) NOT NULL,
+    dex VARCHAR(255) NOT NULL,
+    con VARCHAR(255) NOT NULL,
+    int VARCHAR(255) NOT NULL,
+    wis VARCHAR(255) NOT NULL,
+    cha VARCHAR(255) NOT NULL,
+    created DATETIME NOT NULL,
+    modified DATETIME NOT NULL
+);
