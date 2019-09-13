@@ -6,8 +6,9 @@ import (
 	"upper.io/db.v3/lib/sqlbuilder"
 )
 
-var rs = []func(sqlbuilder.Database, *mux.Router){
+var rs = [](func(sqlbuilder.Database, *mux.Router)){
 	routes.UserRoutes,
+	routes.CharacterRoutes,
 }
 
 // CreateRouter creates a new router to handle request

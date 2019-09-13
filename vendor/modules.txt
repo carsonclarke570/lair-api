@@ -4,6 +4,8 @@ github.com/davecgh/go-spew/spew
 github.com/go-sql-driver/mysql
 # github.com/gorilla/mux v1.7.3
 github.com/gorilla/mux
+# github.com/h2non/parth v0.0.0-20190131123155-b4df798d6542
+github.com/h2non/parth
 # github.com/konsorten/go-windows-terminal-sequences v1.0.1
 github.com/konsorten/go-windows-terminal-sequences
 # github.com/pmezard/go-difflib v1.0.0
@@ -18,6 +20,8 @@ github.com/stretchr/testify/require
 golang.org/x/sys/unix
 # google.golang.org/appengine v1.6.2
 google.golang.org/appengine/cloudsql
+# gopkg.in/h2non/gock.v1 v1.0.15
+gopkg.in/h2non/gock.v1
 # gopkg.in/yaml.v2 v2.2.2
 gopkg.in/yaml.v2
 # upper.io/db.v3 v3.6.3+incompatible

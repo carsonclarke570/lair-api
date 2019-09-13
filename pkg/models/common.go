@@ -10,3 +10,13 @@ type Base struct {
 	Created  time.Time `json:"created" db:"created"`
 	Modified time.Time `json:"modified" db:"modified"`
 }
+
+// AbilityScores represents a set of ability scores
+type AbilityScores struct {
+	STR int `json:"str" db:"str"`
+	DEX int `json:"dex" db:"dex"`
+	CON int `json:"con" db:"con"`
+	INT int `json:"int" db:"int"`
+	WIS int `json:"wis" db:"wis"`
+	CHA int `json:"cha" db:"cha"`
+}

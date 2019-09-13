@@ -12,6 +12,7 @@ services:
     volumes:
       - ./sql/up.sql:/docker-entrypoint-initdb.d/1.up.sql
       - ./sql/populate.sql:/docker-entrypoint-initdb.d/2.populate.sql
+      - ./sql/data:/var/lib/mysql
   api:
     build: .
     depends_on:
