@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/carsonclarke570/lair-api/pkg/db"
 	"github.com/carsonclarke570/lair-api/pkg/router"
@@ -19,6 +21,10 @@ func main() {
 	router := router.CreateRouter(sess)
 	log.Info("Starting HTTP server..")
 
-	err = http.ListenAndServe(":80", router)
+	var port string
+	if port = os.Getenv("PORT"); port == "" {
+		port = "80"
+	}
+	err = http.ListenAndServe(fmt.Sprintf(":%s", port), router)
 	log.WithError(err).Error("error serving requests")
 }
