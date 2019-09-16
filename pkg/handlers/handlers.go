@@ -11,6 +11,7 @@ import (
 
 	"github.com/carsonclarke570/lair-api/pkg/models"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 	"upper.io/db.v3/lib/sqlbuilder"
 )
 
@@ -33,6 +34,8 @@ func Create(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 			return
 		}
 		resp.Header().Set("Location", fmt.Sprintf("%d", id))
+
+		log.WithField("operation", "CREATE").Info(req.URL.RawQuery)
 	}
 }
 
@@ -49,7 +52,7 @@ func Read(sess sqlbuilder.Database, model models.Model) func(http.ResponseWriter
 		col := sess.Collection(model.TableName())
 		err = col.Find(id).One(m.Interface())
 		if err != nil {
-			http.Error(resp, err.Error(), 400)
+			resp.WriteHeader(http.StatusNoContent)
 			return
 		}
 
@@ -132,7 +135,7 @@ func Filter(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 		query := fmt.Sprintf("SELECT * FROM %s %s ORDER BY %s %s LIMIT %d OFFSET %d;",
 			model.TableName(), where, pg.OrderBy, pg.Order, pg.N, (pg.Page-1)*pg.N,
 		)
-		fmt.Println(query)
+
 		rows, err := sess.Query(query)
 		if err != nil {
 			http.Error(resp, err.Error(), 400)

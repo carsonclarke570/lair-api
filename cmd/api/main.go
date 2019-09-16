@@ -11,6 +11,8 @@ import (
 )
 
 func main() {
+	log.SetFormatter(&log.JSONFormatter{})
+
 	log.Info("Connecting to database..")
 	sess, err := db.InitDB()
 	if err != nil {
@@ -19,12 +21,11 @@ func main() {
 	defer sess.Close()
 
 	router := router.CreateRouter(sess)
-	log.Info("Starting HTTP server..")
-
 	var port string
 	if port = os.Getenv("PORT"); port == "" {
 		port = "80"
 	}
+	log.Info(fmt.Sprintf("Starting HTTP server on port %s..", port))
 	err = http.ListenAndServe(fmt.Sprintf(":%s", port), router)
 	log.WithError(err).Error("error serving requests")
 }

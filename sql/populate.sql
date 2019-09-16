@@ -1,4 +1,4 @@
-INSERT INTO lair.Users
+INSERT INTO lair.users
 VALUES 
-    (0, "Admin", "User", "admin@test.com", "bfialibalvaab=", '2012-06-18 10:34:09', '2012-06-18 10:34:09'),
-	(0, "Test", "User", "test@test.com", "bfialibalvaab=", '2012-06-18 10:34:09', '2012-06-18 10:34:09'); 
+    (0, "Admin", '2012-06-18 10:34:09', '2012-06-18 10:34:09'),
+	(0, "Test", '2012-06-18 10:34:09', '2012-06-18 10:34:09'); 

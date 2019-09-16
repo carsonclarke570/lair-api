@@ -1,7 +1,7 @@
 package models
 
-// CharacterSheet represents a DnD 5e character sheet
-type CharacterSheet struct {
+// Character represents a DnD 5e character sheet
+type Character struct {
 	Base      `json:",inline" db:",inline"`
 	Name      string `json:"name" db:"name"`
 	Race      string `json:"race" db:"race"`
@@ -13,7 +13,7 @@ type CharacterSheet struct {
 	Armor      string `json:"armor" db:"armor"`
 	HitPoints  uint   `json:"hit_points" db:"hit_points"`
 	HitDie     string `json:"hit_die" db:"hit_die"`
-	Speed      string `json:"speed" db:"speed"`
+	Speed      uint   `json:"speed" db:"speed"`
 	Initiative uint   `json:"initiative" db:"initiative"`
 
 	// TO-DO: Make multi-classing
@@ -25,19 +25,20 @@ type CharacterSheet struct {
 	// TO-DO: Skills
 
 	// TO-DO: Vulnerabilities, Resistances, Immunities, Senses, Passive Perception, Languages
+	PlayerID uint `json:"player_id" db:"player_id"`
 }
 
 // GetBase from model.Model
-func (c *CharacterSheet) GetBase() *Base {
+func (c *Character) GetBase() *Base {
 	return &c.Base
 }
 
 // SetID from model.Model
-func (c *CharacterSheet) SetID(id uint) {
+func (c *Character) SetID(id uint) {
 	c.ID = id
 }
 
 // TableName from model.Model
-func (*CharacterSheet) TableName() string {
-	return "character_sheets"
+func (*Character) TableName() string {
+	return "characters"
 }

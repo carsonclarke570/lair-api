@@ -11,9 +11,9 @@ import (
 
 // CharacterRoutes routes characters
 func CharacterRoutes(sess sqlbuilder.Database, router *mux.Router) {
-	router.HandleFunc("/api/character_sheet", handlers.Create(sess, &models.CharacterSheet{})).Methods(http.MethodPost)
-	router.HandleFunc("/api/character_sheet/{id}", handlers.Read(sess, &models.CharacterSheet{})).Methods(http.MethodGet)
-	router.HandleFunc("/api/character_sheet/{id}", handlers.Update(sess, &models.CharacterSheet{})).Methods(http.MethodPut)
-	router.HandleFunc("/api/character_sheet/{id}", handlers.Delete(sess, &models.CharacterSheet{})).Methods(http.MethodDelete)
-	router.HandleFunc("/api/character_sheet", handlers.Filter(sess, &models.CharacterSheet{})).Methods(http.MethodGet)
+	router.HandleFunc("/api/character", handlers.Create(sess, &models.Character{})).Methods(http.MethodPost)
+	router.HandleFunc("/api/character/{id}", handlers.Read(sess, &models.Character{})).Methods(http.MethodGet)
+	router.HandleFunc("/api/character/{id}", handlers.Update(sess, &models.Character{})).Methods(http.MethodPut)
+	router.HandleFunc("/api/character/{id}", handlers.Delete(sess, &models.Character{})).Methods(http.MethodDelete)
+	router.HandleFunc("/api/character", handlers.Filter(sess, &models.Character{})).Methods(http.MethodGet)
 }

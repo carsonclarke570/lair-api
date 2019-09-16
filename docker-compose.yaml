@@ -15,6 +15,12 @@ services:
       - ./sql/data:/var/lib/mysql
   api:
     build: .
+    environment:
+      DB_USER: 'root'
+      DB_PASS: 'lairpw'
+      DB_HOST: 'db'
+      DB_DATA: 'lair'
+      PORT: '8000'
     depends_on:
       - db
     ports:
