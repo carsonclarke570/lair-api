@@ -4,6 +4,7 @@ package models
 type Character struct {
 	Base      `json:",inline" db:",inline"`
 	Name      string `json:"name" db:"name"`
+	Image     string `json:"img" db:"img"`
 	Race      string `json:"race" db:"race"`
 	Level     uint   `json:"level" db:"level"`
 	Size      string `json:"size" db:"size"`

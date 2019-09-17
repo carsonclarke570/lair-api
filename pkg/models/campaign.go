@@ -5,6 +5,7 @@ type Campaign struct {
 	Base         `json:",inline" db:",inline"`
 	Name         string `json:"name" db:"name"`
 	GameMasterID uint   `json:"dm_id" db:"dm_id"`
+	Image        string `json:"img" db:"img"`
 }
 
 // GetBase from model.Model
