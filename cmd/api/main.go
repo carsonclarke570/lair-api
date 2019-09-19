@@ -11,8 +11,6 @@ import (
 )
 
 func main() {
-	log.SetFormatter(&log.JSONFormatter{})
-
 	log.Info("Connecting to database..")
 	sess, err := db.InitDB()
 	if err != nil {

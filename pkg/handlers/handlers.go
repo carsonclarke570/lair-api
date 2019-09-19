@@ -33,7 +33,6 @@ func Create(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 			return
 		}
 		resp.Header().Set("Location", fmt.Sprintf("%d", id))
-		resp.Header().Set("Access-Control-Allow-Origin", "*")
 	}
 }
 
@@ -55,7 +54,6 @@ func Read(sess sqlbuilder.Database, model models.Model) func(http.ResponseWriter
 		}
 
 		resp.Header().Set("Content-Type", "application/json")
-		resp.Header().Set("Access-Control-Allow-Origin", "*")
 		json.NewEncoder(resp).Encode(m.Elem().Interface().(models.Model))
 	}
 }
@@ -86,8 +84,6 @@ func Update(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 			http.Error(resp, err.Error(), 400)
 			return
 		}
-
-		resp.Header().Set("Access-Control-Allow-Origin", "*")
 	}
 }
 
@@ -106,8 +102,6 @@ func Delete(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 			http.Error(resp, err.Error(), 400)
 			return
 		}
-
-		resp.Header().Set("Access-Control-Allow-Origin", "*")
 	}
 }
 
@@ -152,7 +146,6 @@ func Filter(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 		}
 
 		resp.Header().Set("Content-Type", "application/json")
-		resp.Header().Set("Access-Control-Allow-Origin", "*")
 		json.NewEncoder(resp).Encode(m.Elem().Interface())
 	}
 }
