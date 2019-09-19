@@ -26,6 +26,7 @@ func CreateRouter(sess sqlbuilder.Database) http.Handler {
 	// Add middleware for CORS policy
 	middleware := cors.New(cors.Options{
 		AllowedOrigins: []string{"https://lair-ui.herokuapp.com/"},
+		Debug:          true,
 	})
 
 	return middleware.Handler(router)
