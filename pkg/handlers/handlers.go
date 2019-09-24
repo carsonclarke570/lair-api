@@ -38,6 +38,7 @@ func Create(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 
 // Read reads a model from the database
 func Read(sess sqlbuilder.Database, model models.Model) func(http.ResponseWriter, *http.Request) {
+	_, ok := model.(models.Embedded)
 	m := reflect.New(reflect.TypeOf(model))
 	return func(resp http.ResponseWriter, req *http.Request) {
 		id, err := strconv.Atoi(mux.Vars(req)["id"])
@@ -51,6 +52,14 @@ func Read(sess sqlbuilder.Database, model models.Model) func(http.ResponseWriter
 		if err != nil {
 			resp.WriteHeader(http.StatusNoContent)
 			return
+		}
+
+		if ok {
+			err = m.Elem().Interface().(models.Embedded).ReadChildren(sess)
+			if err != nil {
+				http.Error(resp, err.Error(), 400)
+				return
+			}
 		}
 
 		resp.Header().Set("Content-Type", "application/json")

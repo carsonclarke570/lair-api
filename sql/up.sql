@@ -25,7 +25,7 @@ CREATE TABLE lair.campaigns (
 
     -- FIELDS
     name VARCHAR(255) NOT NULL,
-    img VARCHAR(255) NOT NULL,
+    img VARCHAR(511) NOT NULL,
 
     -- TIME STAMPS
     created DATETIME NOT NULL,
@@ -59,7 +59,7 @@ CREATE TABLE lair.characters (
     
     -- FIELDS
     name VARCHAR(255) NOT NULL,
-    img VARCHAR(255) NOT NULL,
+    img VARCHAR(512) NOT NULL,
     race VARCHAR(255) NOT NULL,
     level INT NOT NULL,
     size VARCHAR(255),

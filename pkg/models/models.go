@@ -1,5 +1,7 @@
 package models
 
+import "upper.io/db.v3/lib/sqlbuilder"
+
 //Model represents a common interface for models
 type Model interface {
 
@@ -11,7 +13,10 @@ type Model interface {
 
 	// TableName gives the name of the database table for the model
 	TableName() string
+}
 
-	// // FilterParams gives a map of all params
-	// FilterParams() map[string]string
+// Embedded represents a model that has children models
+type Embedded interface {
+	ReadChildren(sess sqlbuilder.Database) error
+	DeleteChildren(sess sqlbuilder.Database) error
 }
