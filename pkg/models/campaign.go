@@ -8,10 +8,10 @@ import (
 // Campaign represents a collection of players and a DM
 type Campaign struct {
 	Base         `json:",inline" db:",inline"`
-	Name         string   `json:"name" db:"name"`
-	GameMasterID uint     `json:"dm_id" db:"dm_id"`
-	Image        string   `json:"img,omitempty" db:"img,omitempty"`
-	Players      []Player `json:"players" db:"-"`
+	Name         string `json:"name" db:"name"`
+	GameMasterID uint   `json:"dm_id" db:"dm_id"`
+	Image        string `json:"img" db:"img"`
+	Users        []User `json:"players" db:"-"`
 }
 
 // GetBase from model.Model
@@ -31,14 +31,14 @@ func (*Campaign) TableName() string {
 
 // ReadChildren from model.Embedded
 func (c *Campaign) ReadChildren(sess sqlbuilder.Database) error {
-	children := make([]Player, 0)
-	collection := sess.Collection("players")
+	children := make([]User, 0)
+	collection := sess.Collection("users")
 
 	err := collection.Find(db.Cond{"campaign_id": c.ID}).All(&children)
 	if err != nil {
 		return err
 	}
-	c.Players = children
+	c.Users = children
 
 	return nil
 }

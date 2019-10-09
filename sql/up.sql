@@ -36,26 +36,11 @@ CREATE TABLE lair.campaigns (
     FOREIGN KEY (dm_id) REFERENCES lair.users(id)
 );
 
-CREATE TABLE lair.players (
+CREATE TABLE lair.characters (
     -- IDS
     id BIGINT NOT NULL AUTO_INCREMENT,
     user_id BIGINT,
     campaign_id BIGINT,
-
-    -- TIME STAMPS
-    created DATETIME NOT NULL,
-    modified DATETIME NOT NULL,
-
-    -- KEYS
-    PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES lair.users(id),
-    FOREIGN KEY (campaign_id) REFERENCES lair.campaigns(id)
-);
-
-CREATE TABLE lair.characters (
-    -- IDS
-    id BIGINT NOT NULL AUTO_INCREMENT,
-    player_id BIGINT,
     
     -- FIELDS
     name VARCHAR(255) NOT NULL,
@@ -83,5 +68,6 @@ CREATE TABLE lair.characters (
 
     -- PRIMARY AND FOREIGN KEYS
     PRIMARY KEY (id),
-    FOREIGN KEY (player_id) REFERENCES lair.players(id)
+    FOREIGN KEY (user_id) REFERENCES lair.players(id),
+    FOREIGN KEY (campaign_id) REFERENCES lair.campaigns(id)
 );
