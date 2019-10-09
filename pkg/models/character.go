@@ -26,7 +26,8 @@ type Character struct {
 	// TO-DO: Skills
 
 	// TO-DO: Vulnerabilities, Resistances, Immunities, Senses, Passive Perception, Languages
-	PlayerID uint `json:"player_id" db:"player_id"`
+	UserID     uint `json:"user_id" db:"user_id"`
+	CampaignID uint `json:"campaign_id" db:"campaign_id"`
 }
 
 // GetBase from model.Model

@@ -21,10 +21,6 @@ func Create(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 		json.NewDecoder(req.Body).Decode(m.Interface())
 
 		m2 := m.Elem().Interface().(models.Model)
-		base := m2.GetBase()
-		base.ID = 0
-		base.Created = time.Now()
-		base.Modified = time.Now()
 
 		col := sess.Collection(model.TableName())
 		id, err := col.Insert(m2)
@@ -54,6 +50,7 @@ func Read(sess sqlbuilder.Database, model models.Model) func(http.ResponseWriter
 			return
 		}
 
+		// Post-read hook
 		if ok {
 			err = m.Elem().Interface().(models.Embedded).ReadChildren(sess)
 			if err != nil {
@@ -98,11 +95,22 @@ func Update(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 
 // Delete removes an entry in the database
 func Delete(sess sqlbuilder.Database, model models.Model) func(http.ResponseWriter, *http.Request) {
+	_, ok := model.(models.Embedded)
 	return func(resp http.ResponseWriter, req *http.Request) {
 		id, err := strconv.Atoi(mux.Vars(req)["id"])
 		if err != nil {
 			http.Error(resp, err.Error(), 400)
 			return
+		}
+
+		// Pre-delete hook
+		if ok {
+			model.SetID(uint(id))
+			err = model.(models.Embedded).DeleteChildren(sess)
+			if err != nil {
+				http.Error(resp, err.Error(), 400)
+				return
+			}
 		}
 
 		col := sess.Collection(model.TableName())
@@ -155,6 +163,6 @@ func Filter(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 		}
 
 		resp.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(resp).Encode(m.Elem().Interface())
+		json.NewEncoder(resp).Encode(m.Interface())
 	}
 }
