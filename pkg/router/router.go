@@ -13,7 +13,6 @@ var rs = [](func(sqlbuilder.Database, *mux.Router)){
 	routes.UserRoutes,
 	routes.CharacterRoutes,
 	routes.CampaignRoutes,
-	routes.PlayerRoutes,
 }
 
 // CreateRouter creates a new router to handle request

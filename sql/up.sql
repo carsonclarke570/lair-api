@@ -68,6 +68,6 @@ CREATE TABLE lair.characters (
 
     -- PRIMARY AND FOREIGN KEYS
     PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES lair.players(id),
+    FOREIGN KEY (user_id) REFERENCES lair.users(id),
     FOREIGN KEY (campaign_id) REFERENCES lair.campaigns(id)
 );
