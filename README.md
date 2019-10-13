@@ -4,7 +4,9 @@ API for Lair, a Dungeons and Dragons 5E campaign manager.
 
 ## Getting Started
 
-## Usage
+### Prerequisites
+
+Make sure you have Docker installed on your system and that the Docker daemon is running.
 
 ### Local Development
 
@@ -84,9 +86,16 @@ Filter returns a JSON list of database entries based on conditions passed as que
 | page | Determines which page of results to draw from. | `1` |
 
 ## Contributing
+Feel free open a pull request and a Code Owner will get around to reviewing it. Don't hesitate to open a new issue or contact an author with any questions you may have.
+
+## Authors
+
+* **Carson Clarke-Magrab** - *Initial work* - [carsonclarke570](https://github.com/carsonclarke570)
 
 ## License
 
-## Contact
+TO-DO: Add license
 
-## Acknowledgements
+## Acknowledgments
+
+* The UberEats app
