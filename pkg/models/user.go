@@ -2,9 +2,11 @@ package models
 
 // User represents a user of the application
 type User struct {
-	Base  `json:",inline" db:",inline"`
-	Name  string `json:"name" db:"name"`
-	Email string `json:"email" db:"email"`
+	Base     `json:",inline" db:",inline"`
+	Name     string `json:"name" db:"name"`
+	Email    string `json:"email" db:"email"`
+	Password string `json:"password" db:"password"`
+	Verified bool   `json:"verified" db:"verified"`
 }
 
 // GetBase from model.Model

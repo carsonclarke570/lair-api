@@ -21,6 +21,8 @@ func Create(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 		json.NewDecoder(req.Body).Decode(m.Interface())
 
 		m2 := m.Elem().Interface().(models.Model)
+		m2.GetBase().Modified = time.Now()
+		m2.GetBase().Created = time.Now()
 
 		col := sess.Collection(model.TableName())
 		id, err := col.Insert(m2)
@@ -124,10 +126,10 @@ func Delete(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 
 // Filter filters results
 func Filter(sess sqlbuilder.Database, model models.Model) func(http.ResponseWriter, *http.Request) {
-	m := reflect.New(reflect.SliceOf(reflect.TypeOf(model)))
-
+	_, embedded := model.(models.Embedded)
+	m := reflect.New(reflect.TypeOf(model))
 	return func(resp http.ResponseWriter, req *http.Request) {
-
+		list := reflect.New(reflect.SliceOf(reflect.TypeOf(model))).Elem()
 		pg := NewPagination()
 		clauses := []string{}
 		for key, values := range req.URL.Query() {
@@ -156,13 +158,24 @@ func Filter(sess sqlbuilder.Database, model models.Model) func(http.ResponseWrit
 			return
 		}
 
-		err = sqlbuilder.NewIterator(rows).All(m.Interface())
+		iter := sqlbuilder.NewIterator(rows)
+		for iter.Next(m.Interface()) {
+			if embedded {
+				err = m.Elem().Interface().(models.Embedded).ReadChildren(sess)
+				if err != nil {
+					http.Error(resp, err.Error(), 400)
+					return
+				}
+			}
+			list = reflect.Append(list, m.Elem())
+		}
+
 		if err != nil {
 			http.Error(resp, err.Error(), 400)
 			return
 		}
 
 		resp.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(resp).Encode(m.Interface())
+		json.NewEncoder(resp).Encode(list.Interface())
 	}
 }
